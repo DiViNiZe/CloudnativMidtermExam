@@ -32,6 +32,7 @@ public class CourseService {
       Course targetCourse = getCourseById(courseId);
       if(checkStudentYear(student)){
         targetCourse.getRegisted().add(student);
+        courseRepo.save(targetCourse);
         isSuccess = true;
       }else{
         isSuccess = false;
@@ -47,9 +48,9 @@ public class CourseService {
     }
 
     public boolean checkStudentYear(Student student){
+      System.out.print("**** course size ******");
+      System.out.print(student.getCourse().size());
       int courseCount = student.getCourse().size();
-      System.out.print("**** CourseCount ******");
-      System.out.print(courseCount);
       int studentYear = student.getYear();
       if(studentYear >= 3){
         if(studentYear == 3 && courseCount < 2){

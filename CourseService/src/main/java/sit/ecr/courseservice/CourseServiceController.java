@@ -38,7 +38,8 @@ class CourseServiceController {
   @PostMapping("/courseservice/courses/{courseId}")
   public ResponseEntity<Boolean> saveStudentToCourse(@PathVariable("courseId") int targetCourseId,@RequestBody Student student){
     Boolean isSuccess = false;
-    isSuccess = courseService.saveStudentToCourse(targetCourseId, student);
+    Student queryedStudent = studentService.findById(student.getStudentId());
+    isSuccess = courseService.saveStudentToCourse(targetCourseId, queryedStudent);
     return new ResponseEntity<>(isSuccess,HttpStatus.OK);
   }
   
