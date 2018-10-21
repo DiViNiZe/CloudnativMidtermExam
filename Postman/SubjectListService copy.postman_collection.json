@@ -1,0 +1,599 @@
+{
+	"info": {
+		"_postman_id": "9455f166-b0bc-49e9-a4b9-f9b06800fd6f",
+		"name": "SubjectListService copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "subjectlist service",
+			"item": [
+				{
+					"name": "GetCurriculumList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb9ed4c4-4126-47ee-a507-8b86cebe1a56",
+								"exec": [
+									"pm.test(\"Amount of Curriculum is correct!\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    var data_length = jsonData.length;",
+									"    pm.expect(data_length).to.eql(8);",
+									"});",
+									"",
+									"pm.test(\"Curriculum1 is true!\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    var curriculum_id = jsonData[0].curriculumId;",
+									"    var curriculum_name = jsonData[0].curriculumName;",
+									"    var curriculum_code = jsonData[0].curriculumCode;",
+									"    var curriculum_description = jsonData[0].curriculumDescription;",
+									"    pm.expect(curriculum_id).to.eql(1);",
+									"    pm.expect(curriculum_name).to.eql(\"Bachelor of Science Program in Information Technology\");",
+									"    pm.expect(curriculum_code).to.eql(\"B.Sc.IT\");",
+									"    pm.expect(curriculum_description).to.eql(\"\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8083/curriculum",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"curriculum"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetCurriculumList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/curriculum",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"curriculum"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Sep 2018 15:00:34 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								}
+							],
+							"cookie": [],
+							"body": "[{\"curriculumId\":1,\"curriculumName\":\"Bachelor of Science Program in Information Technology\",\"curriculumCode\":\"B.Sc.IT\",\"curriculumDescription\":\"\"},{\"curriculumId\":2,\"curriculumName\":\"Bachelor of Science Program in Computer Science\",\"curriculumCode\":\"B.Sc.CS\",\"curriculumDescription\":\"\"},{\"curriculumId\":3,\"curriculumName\":\"Master of Science Program in Information Technology\",\"curriculumCode\":\"M.Sc.IT\",\"curriculumDescription\":\"\"},{\"curriculumId\":4,\"curriculumName\":\"Master of Science Program in Electronic Business/Master of Science Programme in Business Information System\",\"curriculumCode\":\"M.Sc.EB_M.Sc.BIS\",\"curriculumDescription\":\"\"},{\"curriculumId\":5,\"curriculumName\":\"Master of Science Program in Software Engineering\",\"curriculumCode\":\"M.Sc.SE\",\"curriculumDescription\":\"\"},{\"curriculumId\":15,\"curriculumName\":\"Bachelor of Arts Digital Service Innovation\",\"curriculumCode\":\"DSI\",\"curriculumDescription\":\"\"},{\"curriculumId\":9,\"curriculumName\":\"Master of Science Program In Bioinfomatics\",\"curriculumCode\":\"M.Sc.Bio\",\"curriculumDescription\":\"\"},{\"curriculumId\":12,\"curriculumName\":\"Event\",\"curriculumCode\":\"Event\",\"curriculumDescription\":\"\"}]"
+						}
+					]
+				},
+				{
+					"name": "GetCurriculumById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13661363-7056-4d99-82f7-26b488449041",
+								"exec": [
+									"pm.test(\"Curriculum1 is true!\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    var curriculum_id = jsonData.curriculumId;",
+									"    var curriculum_name = jsonData.curriculumName;",
+									"    var curriculum_code = jsonData.curriculumCode;",
+									"    var curriculum_description = jsonData.curriculumDescription;",
+									"    pm.expect(curriculum_id).to.eql(1);",
+									"    pm.expect(curriculum_name).to.eql(\"Bachelor of Science Program in Information Technology\");",
+									"    pm.expect(curriculum_code).to.eql(\"B.Sc.IT\");",
+									"    pm.expect(curriculum_description).to.eql(\"\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentId\":1,\n\t\"videoId\":10,\n\t\"videoName\":\"Life of patric\",\n\t\"lecturer\":\"Mr.Patric\",\n\t\"videoThumbnail\":\"Emmel\",\n\t\"checkpoint\":1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8083/history/checkpoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"history",
+								"checkpoint"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetCurriculumById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/curriculum/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"curriculum",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Sep 2018 15:03:22 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								}
+							],
+							"cookie": [],
+							"body": "{\"curriculumId\":1,\"curriculumName\":\"Bachelor of Science Program in Information Technology\",\"curriculumCode\":\"B.Sc.IT\",\"curriculumDescription\":\"\"}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "videolist service",
+			"item": [
+				{
+					"name": "get video from videoId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9050e5c-b4d7-4db1-8749-37b664813f38",
+								"exec": [
+									"pm.test(\"\", function(){",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(8380);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/video/8380",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"video",
+								"8380"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of video of subjectId 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90dc21e4-5fac-41c8-8259-3c13067401ea",
+								"exec": [
+									"pm.test(\"\", function(){",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].videoId).to.eql(8282);",
+									"    pm.expect(jsonData[0].videoName).to.eql(\"INT 101 INFORMATION TECHNOLOGY FUNDAMENTAL G.2\");",
+									"    pm.expect(jsonData[0].lecturer).to.eql(\"Siam Yamsaengsung\");",
+									"    pm.expect(jsonData[0].videoThumbnail).to.eql(\"https://ngelearning.sit.kmutt.ac.th/api/video_image?id=8282\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/videoList/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"videoList",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CommentService",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\":\"Love you too eiei\",\n\t\"postUserId\":1,\n\t\"videoId\":1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e09a1ab-16a5-45fc-b61e-0bdbe52bb5f0",
+								"exec": [
+									"pm.test(\"ทำการดึงเนื้อหาคอมเม้นแรก มีค่า Love you too eiei\", function(){",
+									"    var jsonData = pm.response.json();",
+									"    var content = jsonData[0].content;",
+									"    pm.expect(content).to.eql(\"Love you too eiei\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History Service",
+			"item": [
+				{
+					"name": "Get Checkpoint ByStudentIdAndVideoId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4146102c-949d-4274-a142-1aa033f45125",
+								"exec": [
+									"pm.test(\"Checkpoint(second) is true!\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    var checkpoint = jsonData;",
+									"    pm.expect(checkpoint).to.eql(1);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8082/history/checkpoint?studentId=9223372036854775806&videoId=202",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"history",
+								"checkpoint"
+							],
+							"query": [
+								{
+									"key": "studentId",
+									"value": "9223372036854775806"
+								},
+								{
+									"key": "videoId",
+									"value": "202"
+								}
+							]
+						},
+						"description": "Get Checkpoint(in second) from HistoryObject By StudentId&VideoId"
+					},
+					"response": [
+						{
+							"name": "http://localhost:8080/history/checkpoint?studentId=1&videoId=10",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/history/checkpoint?studentId=1&videoId=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"history",
+										"checkpoint"
+									],
+									"query": [
+										{
+											"key": "studentId",
+											"value": "1"
+										},
+										{
+											"key": "videoId",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Oct 2018 15:27:12 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "15"
+						}
+					]
+				},
+				{
+					"name": "Post Create Checkpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17233a63-6fec-41aa-a6dd-33e4704433bd",
+								"exec": [
+									"pm.test(\"เพิ่ม history ลงระบบ\", function(){",
+									"    pm.response.to.have.status(200)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentId\": 9223372036854775806,\n    \"videoId\": 202,\n\t\"videoName\": \"two two\",\n\t\"lecturer\": \"no-name\",\n\t\"videoThumbnail\": \"thumb\",\n\t\"checkpoint\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/history/checkpoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"history",
+								"checkpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Update Checkpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03382e55-4d5f-4fe9-9fed-a10344d79b32",
+								"exec": [
+									"pm.test(\"Update checkpoint to 60 second\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    var checkpoint = jsonData;",
+									"    pm.expect(checkpoint).to.eql(60);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"studentId\": 9223372036854775806,\n    \"videoId\": 303,\n\t\"videoName\": \"Three tri\",\n\t\"lecturer\": \"no-name\",\n\t\"videoThumbnail\": \"thumb\",\n\t\"checkpoint\": 60\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/history/checkpoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"history",
+								"checkpoint"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
