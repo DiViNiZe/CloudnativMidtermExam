@@ -15,7 +15,7 @@ public class Student implements Serializable{
     private static final long serialVersionUID = 1L;
 
   @Id
-    private Long studentid;
+    private Long studentId;
 
     @NotBlank
     private String name;
@@ -33,10 +33,10 @@ public class Student implements Serializable{
     private int year;
 
   /**
-   * @return the studentid
+   * @return the studentId
    */
-  public Long getStudentid() {
-    return studentid;
+  public Long getStudentId() {
+    return studentId;
   }
 
   /**
@@ -112,8 +112,8 @@ public class Student implements Serializable{
   /**
    * @param studentid the studentid to set
    */
-  public void setStudentid(Long studentid) {
-    this.studentid = studentid;
+  public void setStudentId(Long studentId) {
+    this.studentId = studentId;
   }
 
     

@@ -14,4 +14,9 @@ public class StudentService {
         return student;
     }
 
+    public Student saveStudent(Student student){
+        studentRepo.save(student);
+        return student;
+    }
+
 }

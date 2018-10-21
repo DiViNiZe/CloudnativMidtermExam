@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import sit.ecr.courseservice.student.*;
 
 @Service
@@ -11,6 +14,8 @@ public class CourseService {
 
     @Autowired
     private CourseRepository courseRepo ;
+
+    @Autowired StudentService studentService;
 
     public Course getCourseById(int id) {
       Course course = courseRepo.getOne(id);
@@ -23,10 +28,13 @@ public class CourseService {
     }
 
     public boolean saveStudentToCourse(int courseId,Student student){
+      boolean isSuccess  = false;
       Course targetCourse = getCourseById(courseId);
       targetCourse.getRegisted().add(student);
-      courseRepo.save(targetCourse);
-      return false;
+      if(courseRepo.save(targetCourse) != null){
+        isSuccess = true;
+      }
+      return isSuccess;
     }
 
     public List<Student> getStudentInCourse(int courseId){
