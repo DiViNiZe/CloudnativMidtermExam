@@ -30,10 +30,13 @@ public class CourseService {
     public boolean saveStudentToCourse(int courseId,Student student){
       boolean isSuccess  = false;
       Course targetCourse = getCourseById(courseId);
-      targetCourse.getRegisted().add(student);
-      if(courseRepo.save(targetCourse) != null){
+      if(checkStudentYear(student)){
+        targetCourse.getRegisted().add(student);
         isSuccess = true;
+      }else{
+        isSuccess = false;
       }
+      
       return isSuccess;
     }
 
@@ -43,4 +46,21 @@ public class CourseService {
       return registedStudents;
     }
 
+    public boolean checkStudentYear(Student student){
+      int courseCount = student.getCourse().size();
+      System.out.print("**** CourseCount ******");
+      System.out.print(courseCount);
+      int studentYear = student.getYear();
+      if(studentYear >= 3){
+        if(studentYear == 3 && courseCount < 2){
+          return true;
+        }else if(studentYear == 4 && courseCount < 1){
+          return true;
+        }else{
+          return false;
+        }
+      }else{
+        return false;
+      }
+    }
 }

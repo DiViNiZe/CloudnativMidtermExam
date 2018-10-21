@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,12 @@ class StudentServiceController {
   public ResponseEntity<Student> getStudentById(@PathVariable("id") long id){
     Student student = studentService.findById(id);
     return new ResponseEntity<Student>(student,HttpStatus.OK);
-  } 
+  }
+
+  @PostMapping("/studentservice/student")
+  public ResponseEntity<Student> getStudentById(@RequestBody Student student){
+    Student savedStudent = studentService.saveStudent(student);
+    return new ResponseEntity<Student>(savedStudent,HttpStatus.OK);
+  }
   
 }

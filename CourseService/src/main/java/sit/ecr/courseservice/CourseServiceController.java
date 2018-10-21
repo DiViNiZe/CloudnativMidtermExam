@@ -18,7 +18,7 @@ import sit.ecr.courseservice.student.*;
 class CourseServiceController {
 
   @Autowired
-  private StudentService StudentService;
+  private StudentService studentService;
   
   @Autowired
   private CourseService courseService;
@@ -36,18 +36,25 @@ class CourseServiceController {
   }
   
   @PostMapping("/courseservice/courses/{courseId}")
-  public ResponseEntity<Student> saveStudentToCourse(@PathVariable("courseId") int targetCourseId,@RequestBody Student student){
-    Student newStudent = student;
-    courseService.saveStudentToCourse(targetCourseId, student);
-    return new ResponseEntity<>(newStudent,HttpStatus.OK);
+  public ResponseEntity<Boolean> saveStudentToCourse(@PathVariable("courseId") int targetCourseId,@RequestBody Student student){
+    Boolean isSuccess = false;
+    isSuccess = courseService.saveStudentToCourse(targetCourseId, student);
+    return new ResponseEntity<>(isSuccess,HttpStatus.OK);
   }
   
   @PostMapping("/courseservice/student")
   public ResponseEntity<Student> saveStudentFromStudentService(@RequestBody Student student){
-    StudentService.saveStudent(student);
-    Student newStudent = student;
+    Student newStudent = studentService.saveStudent(student);
     return new ResponseEntity<>(newStudent,HttpStatus.OK);
   }
+
+  @GetMapping("/courseservice/student/{id}")
+  public ResponseEntity<Student> getStudentById(@PathVariable("id") long id){
+    Student student = studentService.findById(id);
+    return new ResponseEntity<Student>(student,HttpStatus.OK);
+  }
+
+  
 
   @GetMapping("/courseservice/courses/registed/{id}")
   public ResponseEntity<List<Student>> getRegistedCourse(@PathVariable("id") int courseId){

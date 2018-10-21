@@ -29,7 +29,6 @@ public class Student implements Serializable{
     @NotBlank
     private String facuty;
 
-    @NotBlank
     private int year;
 
 
